@@ -14,7 +14,7 @@ spec:
   values:
     namespace: gitea
     ingress:
-      enable: true
+      enabled: true
       className: traefik
       hosts:
         - host: git.yagoyudi.com
