@@ -18,6 +18,9 @@ spec:
       className: traefik
       hosts:
         - host: git.yagoyudi.com
+          paths:
+            - path: /
+              pathType: Prefix
     actions:
       enable: true
 ---
