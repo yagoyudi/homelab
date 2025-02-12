@@ -41,6 +41,8 @@ spec:
             - git.yyvf.xyz
     actions:
       enabled: true
+      provisioning:
+        enabled: true
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
