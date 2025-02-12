@@ -13,10 +13,6 @@ spec:
         name: gitea
   values:
     namespace: gitea
-    service:
-      ssh:
-        annotations:
-          metallb.universe.tf/allow-shared-ip: test
     gitea:
       admin:
         existingSecret: gitea-admin-secret
