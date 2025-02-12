@@ -20,6 +20,9 @@ spec:
       admin:
         existingSecret: gitea-admin-secret
       config:
+        server:
+          SSH_PORT: 2222
+          SSH_LISTEN_PORT: 2222
         service:
           DISABLE_REGISTRATION: true
     ingress:
