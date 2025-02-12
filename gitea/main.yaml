@@ -40,7 +40,7 @@ spec:
           hosts:
             - git.yyvf.xyz
     actions:
-      enable: true
+      enabled: true
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
