@@ -1,0 +1,48 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: gitea
+      sourceRef:
+        kind: HelmRepository
+        name: gitea
+  values:
+    namespace: gitea
+    gitea:
+      admin:
+        existingSecret: gitea-admin-secret
+    ingress:
+      enabled: true
+      className: traefik
+      hosts:
+        - host: git.yyvf.xyz
+          paths:
+            - path: /
+              pathType: Prefix
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      tls:
+        - secretName: gitea-tls
+          hosts:
+            - git.yyvf.xyz
+    actions:
+      enable: true
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  interval: 1m0s
+  url: https://dl.gitea.com/charts/
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitea
