@@ -16,9 +16,9 @@ spec:
     service:
       ssh:
         type: LoadBalancer
-        clusterIP: ""
+        port: 22
         annotations:
-          metallb.universe.tf/allow-shared-ip: gitea-ssh
+          metallb.universe.tf/allow-shared-ip: "test"
     gitea:
       admin:
         existingSecret: gitea-admin-secret
