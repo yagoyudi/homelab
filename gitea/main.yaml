@@ -13,10 +13,12 @@ spec:
         name: gitea
   values:
     namespace: gitea
+    service:
+      ssh:
+        port: 2222
     gitea:
       admin:
         existingSecret: gitea-admin-secret
-        email: "yagofuruta@protonmail.com"
       config:
         service:
           DISABLE_REGISTRATION: true
