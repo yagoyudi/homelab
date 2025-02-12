@@ -15,14 +15,12 @@ spec:
     namespace: gitea
     service:
       ssh:
-        port: 2222
+        type: LoadBalancer
+        port: 22
     gitea:
       admin:
         existingSecret: gitea-admin-secret
       config:
-        server:
-          SSH_PORT: 2222
-          SSH_LISTEN_PORT: 2222
         service:
           DISABLE_REGISTRATION: true
     ingress:
