@@ -21,7 +21,7 @@ spec:
           DISABLE_REGISTRATION: true
     ingress:
       enabled: true
-      className: traefik
+      className: nginx
       hosts:
         - host: git.yyvf.xyz
           paths:
