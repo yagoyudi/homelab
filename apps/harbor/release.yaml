@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: harbor
+  namespace: harbor
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: harbor
+      sourceRef:
+        kind: HelmRepository
+        name: harbor
+  values:
+    expose:
+      tls:
+        certSource: secret
+        secret:
+          secretName: harbor-tls
+      ingress:
+        hosts:
+          core: harbor.yyvf.xyz
+        className: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    externalURL: https://harbor.yyvf.xyz
+    persistence:
+      persistentVolumeClaim:
+        registry:
+          storageClass: local-path
+        jobservice:
+          jobLog:
+            storageClass: local-path
+        database:
+          storageClass: local-path
+        redis:
+          storageClass: local-path
+        trivy:
+          storageClass: local-path
+
