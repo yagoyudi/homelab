@@ -2,7 +2,8 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: local-path-storage
-
+  labels:
+    pod-security.kubernetes.io/enforce: privileged    
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -116,6 +117,8 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: local-path
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
 provisioner: rancher.io/local-path
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Delete
@@ -132,7 +135,7 @@ data:
             "nodePathMap":[
             {
                     "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                    "paths":["/opt/local-path-provisioner"]
+                    "paths":["/var/local-path-provisioner"]
             }
             ]
     }
