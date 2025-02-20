@@ -21,8 +21,8 @@ spec:
         fsGroup: 1000
       volumes:
       - name: app
-        hostPath:
-          path: /path/to/data/dir
+        persistentVolumeClaim:
+          claimName: shiori
       - name: tmp
         emptyDir:
           medium: Memory
