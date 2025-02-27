@@ -14,7 +14,5 @@ spec:
     # Enable the HTTP-01 challenge provider
     solvers:
       - http01:
-          gatewayHTTPRoute:
-            parentRefs:
-              - name: tls-gateway
-                kind: Gateway
+          ingress:
+            ingressClassName: cilium
