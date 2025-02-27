@@ -69,10 +69,6 @@ spec:
     l2announcements:
       enabled: true
 
-    k8sClientRateLimit:
-      qps: 15
-      burst: 20
-
     ingressController:
       enabled: true
       loadbalancerMode: shared
